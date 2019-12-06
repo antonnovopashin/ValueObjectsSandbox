@@ -28,7 +28,17 @@ try {
 }
 
 $myNextCarEngineVolume = new EngineVolume('2000', 'cc');
-$myNextCarEngine = new Engine($myNextCarEngineVolume, '250');
+
+
+$myNextCarEngine = null;
+
+try {
+    $myNextCarEngine = new Engine($myNextCarEngineVolume, 'gasoline', '250');
+
+} catch (\Exception $exception) {
+    var_dump($exception->getMessage());
+    die;
+}
 
 $myNextCarColor = null;
 
@@ -40,9 +50,6 @@ try {
 }
 
 $myNextCar = Car::create($myNextCarModel, $myNextCarTransmission, $myNextCarYear, $myNextCarEngine, $myNextCarColor);
-
-$myNextCarNewEngineVolume = new EngineVolume('2100', 'cc');
-$rebuiltEngine = $myNextCarEngine->changeVolume($myNextCarNewEngineVolume, 270);
 
 try {
     $increasedEngine = $myNextCarEngine->increaseVolume(50, 'cc');
