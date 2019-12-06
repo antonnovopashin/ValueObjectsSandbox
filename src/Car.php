@@ -61,6 +61,7 @@ class Car
 
         $info->vin= $this->vin;
         $info->model= $this->model->getInfo();
+        $info->color= $this->color->getInfo();
         $info->transmission= $this->transmission->getInfo();
         $info->engine= $this->engine->getInfo();
 
