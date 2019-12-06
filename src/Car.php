@@ -39,16 +39,15 @@ class Car
 
     /**
      * Car constructor.
-     * @param string $vin
      * @param Model $model
      * @param Transmission $transmission
      * @param Year $year
      * @param Engine $engine
      * @param Color $color
      */
-    public function __construct(string $vin, Model $model, Transmission $transmission, Year $year, Engine $engine, Color $color)
+    public function __construct(Model $model, Transmission $transmission, Year $year, Engine $engine, Color $color)
     {
-        $this->vin = $vin;
+        $this->vin = uniqid();
         $this->model = $model;
         $this->transmission = $transmission;
         $this->year = $year;
@@ -56,8 +55,19 @@ class Car
         $this->color = $color;
     }
 
+    public function getInfo()
+    {
+        $info = new \stdClass();
+
+        $info->vin= $this->vin;
+        $info->model= $this->model->getInfo();
+        $info->transmission= $this->transmission->getInfo();
+        $info->engine= $this->engine->getInfo();
+
+        return $info;
+    }
+
     /**
-     * @param string $vin
      * @param Model $model
      * @param Transmission $transmission
      * @param Year $year
@@ -65,9 +75,9 @@ class Car
      * @param Color $color
      * @return static
      */
-    public static function create(string $vin, Model $model, Transmission $transmission, Year $year, Engine $engine, Color $color)
+    public static function create(Model $model, Transmission $transmission, Year $year, Engine $engine, Color $color)
     {
-        return new static($vin, $model, $transmission, $year, $engine, $color);
+        return new static($model, $transmission, $year, $engine, $color);
     }
 
     public function swapEngine(Engine $newEngine)
