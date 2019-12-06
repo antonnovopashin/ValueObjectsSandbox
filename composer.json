@@ -1,0 +1,15 @@
+{
+    "name": "antonnovopashin/value-objects",
+    "description": "Value Objects Sandbox",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Anton Novopashin",
+            "email": "anton.novopashin@hemmersbach.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Cars\\": "src/"}
+    },
+    "require": {}
+}
